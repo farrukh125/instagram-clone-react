@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { storage, db } from "./firebase";
 import firebase from "firebase/compat";
 
-function ImageUpload(props) {
+function ImageUpload({ username }) {
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
   const [caption, setCaption] = useState("");
@@ -41,7 +41,13 @@ function ImageUpload(props) {
             // post image inside db
             db.collection("posts").add({
               timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              caption: caption,
+              imageUrl: url,
+              username: username,
             });
+            setProgress(0);
+            setCaption("");
+            setImage(null);
           });
       }
     );
@@ -49,6 +55,7 @@ function ImageUpload(props) {
 
   return (
     <div>
+      <progress value={progress} max="100" />
       <input
         type="text"
         placeholder="Enter a caption..."
