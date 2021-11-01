@@ -58,9 +58,13 @@ function App() {
   }, [user, username]);
 
   useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) => {
-      setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })));
-    });
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setPosts(
+          snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
+        );
+      });
   }, []);
 
   const signUp = (event) => {
