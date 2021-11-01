@@ -5,6 +5,7 @@ import { db, auth } from "./firebase";
 import Modal from "@material-ui/core/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Input } from "@material-ui/core";
+import ImageUpload from "./ImageUpload";
 
 function getModalStyle() {
   const top = 50;
@@ -42,11 +43,11 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // user has logged in...
+        // user has logged in ...
         console.log(authUser);
         setUser(authUser);
       } else {
-        // user has logged out...
+        // user has logged out ...
         setUser(null);
       }
     });
@@ -72,8 +73,18 @@ function App() {
       .catch((error) => alert(error.message));
   };
 
+  const signIn = (event) => {
+    event.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .catch((error) => alert(error.message));
+    setOpenSignIn(false);
+  };
+
   return (
     <div className="App">
+      <ImageUpload />
+
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app__signup">
@@ -129,7 +140,7 @@ function App() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button onClick={signUp}>Sign Up</Button>
+            <Button onClick={signIn}>Sign In</Button>
           </form>
         </div>
       </Modal>
