@@ -8,7 +8,7 @@ If you have any questions or suggestions, feel free to open an issue or pull req
 [![node](https://badges.aleen42.com/src/node.svg)](https://nodejs.org/en/)
 [![npm](https://badges.aleen42.com/src/npm.svg)](https://www.npmjs.com/)
 
-[Live Application](https://web.app/) 🌐
+[Live Application](https://instagram-clone-react-2013c.web.app/) 🌐
 
 ## Screenshot
 ![instagram-clone-react](https://user-images.githubusercontent.com/36042782/139950170-f2b6a234-c9d1-497d-a501-42bb8560de7f.png)
